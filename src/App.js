@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Map from './components/Map';
 import VenueListContainer from './components/VenueListContainer';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 import './css/main.css'
+
 class App extends Component {
   state = {
     myVenues: []
@@ -17,7 +18,6 @@ class App extends Component {
       this.setState({myVenues: data.response.groups[0].items})
     })
     .catch(err => {
-        // Code for handling errors
         console.log(err)
     });
   }
@@ -25,13 +25,18 @@ class App extends Component {
   render() {
     return(
       <div id="app">
-      {/* Renders the search container with a list of default locations */}
+        {/* Renders the search container with a list of default locations */}
         <VenueListContainer venue={this.state.myVenues} />
-      {/* Renders the map component */}
-        <Map venue={this.state.myVenues} />
+        {/* Renders the map component */}
+        <Map id="map"
+        google={this.props.google}
+        zoom={14}/>
       </div>
       
     )
   }
 }
-export default App;
+
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyBHEgpD4hABDICXccQYltIfR_FpB1Xg0r8'
+})(App);

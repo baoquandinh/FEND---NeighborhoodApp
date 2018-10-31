@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import '../css/main.css'
 
-const url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBHEgpD4hABDICXccQYltIfR_FpB1Xg0r8&callback=initMap"
+const url = "https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
 
 class Map extends Component {
     componentWillMount() {
