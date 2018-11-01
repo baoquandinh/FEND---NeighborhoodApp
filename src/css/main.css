@@ -1,19 +1,23 @@
 /* Welcome Page */
-#app {
+/* #app {
   display: flex
-}
+}*/
 
-#map {
-    height: 100vh;
-    width: 75%;
-  }
-
-.search-container {
+.venue-list-container {
   height: 100vh;
   width: 25%;
 }
 
-html, body {
+.map {
+    height: 100vh;
+    width: 75%;
+  }
+
+#app {
+  display: flex;
+}
+
+html,body {
   height: 100%;
   margin: 0;
   padding: 0;

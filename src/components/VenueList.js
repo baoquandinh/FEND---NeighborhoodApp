@@ -6,13 +6,10 @@ class VenueList extends Component {
         return(
             <div>
                 <ol>
-                    {/* Venue List Item */}
-                    {this.props.venue.map((item) => {
-                        return <VenueItem key={item.venue.id} item={item}/>
-                    })}
+                    {this.props.venue.filter(item => ((item.venue.categories[0].shortName.toLowerCase()).includes((this.props.venueType))) || (this.props.venueType ==='')).map(item => 
+                    {return <VenueItem key={item.venue.id} item={item} itemType={item.venue.categories[0].name} onClick={this.props.onItemClick} />})}
                 </ol>
             </div>
-            // Lists all venue by default
         )
     }
 }

@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 
 class VenueItem extends Component {
+    onClick = () => {
+    this.props.onClick(this.props.item)
+  }
+
     render() {
         return(
-            <li>{this.props.item.venue.name}</li>
+            <li onClick={this.onClick}>{this.props.item.venue.name}</li>
         )
     }
 } 
