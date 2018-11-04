@@ -10,8 +10,10 @@ const GoogleMapComponent = withScriptjs(withGoogleMap((props) =>
       <Marker 
         key={item.venue.id} 
         position={{lat:item.venue.location.lat, lng: item.venue.location.lng}} 
-        onClick={() => props.onMarkerClick(item.venue)}>
-        {item.venue.isOpen && (<InfoWindow><p>Hello</p></InfoWindow>)}
+        onClick={() => props.onClick(item.venue)}>
+        {item.venue.isOpen && (
+        <InfoWindow><p>{item.venue.name}</p></InfoWindow>
+        )}
       </Marker>))} 
   </GoogleMap>
 ))

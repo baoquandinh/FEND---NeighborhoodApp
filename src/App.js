@@ -33,15 +33,31 @@ class App extends Component {
   // Sets the venue type to use for filtering
   onVenueTypeUpdate = (prop) => {
     prop === "all" ? this.setState({venueType: ''}) : this.setState({venueType: prop})
+    this.closeMarker()
     this.setState({isVisible: false, activeMarker: null})
   }
   onItemClick = (e) => {
     this.state.markers.filter((marker) => marker.id === e.venue.id).map(marker => console.log(marker))
     console.log(e.venue)
   }
+  closeMarker = () => {
+    let markers = this.state.markers.map(marker => {
+      console.log(marker)
+      marker.isOpen = false
+      return marker
+    })
+    console.log("Clearing all markers")
+    this.setState({markers: Object.assign(this.state.markers, markers)})
+  }
   onMarkerClick = (marker) => {
-    console.log(marker)
-    marker.isOpen = true
+    // console.log(this.state.markers)
+    this.closeMarker()
+    // console.log(this.state.markers)
+    if(marker.isOpen === true) {
+      marker.isOpen = false
+    } else { 
+      marker.isOpen = true
+    }
     this.setState({markers: Object.assign(this.state.markers, marker)})
   }
 
