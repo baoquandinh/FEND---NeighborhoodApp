@@ -7,8 +7,8 @@ class VenueListDropdown extends Component {
 
     render(){
         return(
-            <div className="cs-select cs-skin-rotate">
-	        <select className="cs-select cs-skin-rotate" onChange={(events) => {this.updateVenue(events)}}>
+            <div className="venue-list-dropdown">
+	        <select onChange={(events) => {this.updateVenue(events)}}>
 		        <option value="" disabled>Filter by food type</option>
 	    	    <option value="all">All</option>
 	    	    <option value="american">American</option>
