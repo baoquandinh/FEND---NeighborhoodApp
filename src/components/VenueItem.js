@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 
 class VenueItem extends Component {
     onClick = () => {
-    this.props.onClick(this.props.item)
+    this.props.onClick(this.props.venue)
   }
 
     render() {
         return(
-            <li onClick={this.onClick}>{this.props.item.venue.name}</li>
+            <li onClick={this.onClick}>{this.props.venue.name}</li>
         )
     }
 } 

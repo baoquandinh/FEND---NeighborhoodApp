@@ -1,3 +1,4 @@
+/* global google*/
 import React, {Component} from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 const GoogleMapComponent = withScriptjs(withGoogleMap((props) =>
@@ -5,16 +6,17 @@ const GoogleMapComponent = withScriptjs(withGoogleMap((props) =>
     defaultZoom={14}
     defaultCenter={{ lat: 37.7007467, lng: -121.8934768 }}
     >
-    {props.venue.filter(item => ((item.venue.categories[0].shortName.toLowerCase()).includes((props.venueType))) || (props.venueType ===''))
-    .map(item => (
-      <Marker 
-        key={item.venue.id} 
-        position={{lat:item.venue.location.lat, lng: item.venue.location.lng}} 
-        onClick={() => props.onClick(item.venue)}>
-        {item.venue.isOpen && (
-        <InfoWindow><p>{item.venue.name}</p></InfoWindow>
-        )}
-      </Marker>))} 
+    {
+      props.venues.filter(venue => ((venue.categories[0].shortName.toLowerCase()).includes((props.venueType))) || (props.venueType ===''))
+      .map(venue => {
+        return <Marker 
+          key={venue.id} 
+          position={{lat:venue.location.lat, lng: venue.location.lng}} 
+          animation={venue.animation}
+          onClick={() => props.onClick(venue)}>
+          {venue.isOpen && <InfoWindow><p>{venue.name}</p></InfoWindow>}
+        </Marker>
+      })}
   </GoogleMap>
 ))
 
@@ -22,9 +24,8 @@ class Map extends Component{
   render(){
     return(
     <GoogleMapComponent
-      venue={this.props.venue}
+      venues={this.props.venues}
       venueType={this.props.venueType}
-      markers ={this.props.markers}
       onClick={this.props.onMarkerClick}
       isMarkerShown
       googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBHEgpD4hABDICXccQYltIfR_FpB1Xg0r8"

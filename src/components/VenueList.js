@@ -6,8 +6,8 @@ class VenueList extends Component {
         return(
             <div>
                 <ol>
-                    {this.props.venue.filter(item => ((item.venue.categories[0].shortName.toLowerCase()).includes((this.props.venueType))) || (this.props.venueType ==='')).map(item => 
-                    {return <VenueItem key={item.venue.id} item={item} itemType={item.venue.categories[0].name} onClick={this.props.onItemClick} />})}
+                    {this.props.venue.filter(venue => ((venue.categories[0].shortName.toLowerCase()).includes((this.props.venueType))) || (this.props.venueType ==='')).map(venue => 
+                    {return <VenueItem key={venue.id} venue={venue} itemType={venue.categories[0].name} onClick={this.props.onItemClick} />})}
                 </ol>
             </div>
         )

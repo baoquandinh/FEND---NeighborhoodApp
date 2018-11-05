@@ -3,70 +3,63 @@ import Map from './components/Map'
 import VenueListContainer from './components/VenueListContainer';
 import './css/main.css'
 class App extends Component {
+  selectedVenue = null
   state={
-    myVenues: [],
+    venues: [],
     venueType: '',
     markers: [],
   }
   componentDidMount(){
-    this.getVenue()
+    this.getVenues()
   }
   // Retreives the list of recommeneded food venues near default location
-  getVenue = () => {
+  getVenues = () => {
     fetch('https://api.foursquare.com/v2/venues/explore?client_id=P51OPZBHXUNV55SMH1K3G0FI5TAQAI3I0A5UAPUK4UETVLLD&client_secret=1MDR0MSHV1L4T01OHEXYEE1CQ2XLN5M2Y4LT42H2EGPQETLT&v=20180323&limit=15&ll=37.7007467,-121.8934768&query=food')
     .then(res => res.json())
     .then(data => {
-      let markers = data.response.groups[0].items.map(item => {
-        return {
-          id: item.venue.id, 
-          lat: item.venue.location.lat, 
-          lng: item.venue.location.lng, 
-          isOpen: false,  // InfoWindow closed by default
-          isVisible: true} //
-        })
-        this.setState({myVenues: data.response.groups[0].items, markers: markers})
+      let venues = data.response.groups[0].items.map(item => item.venue)
+      venues.forEach(venue => {
+        venue.isOpen = false
+        venue.animation = 2
+      });
+      this.setState({venues: venues})
     })
     .catch(err => {
         console.log(err)
     });
   }
-  // Sets the venue type to use for filtering
+  // Filters the venue
   onVenueTypeUpdate = (prop) => {
-    prop === "all" ? this.setState({venueType: ''}) : this.setState({venueType: prop})
-    this.closeMarker()
-    this.setState({isVisible: false, activeMarker: null})
-  }
-  onItemClick = (e) => {
-    this.state.markers.filter((marker) => marker.id === e.venue.id).map(marker => console.log(marker))
-    console.log(e.venue)
-  }
-  closeMarker = () => {
-    let markers = this.state.markers.map(marker => {
-      console.log(marker)
-      marker.isOpen = false
-      return marker
-    })
-    console.log("Clearing all markers")
-    this.setState({markers: Object.assign(this.state.markers, markers)})
-  }
-  onMarkerClick = (marker) => {
-    // console.log(this.state.markers)
-    this.closeMarker()
-    // console.log(this.state.markers)
-    if(marker.isOpen === true) {
-      marker.isOpen = false
-    } else { 
-      marker.isOpen = true
+    if(this.selectedVenue !== null) {
+      this.selectedVenue.isOpen = false
+      this.selectedVenue.animation = 0
     }
-    this.setState({markers: Object.assign(this.state.markers, marker)})
+    this.selectedVenue = null
+    prop === "all" ? this.setState({venueType: ''}) : this.setState({venueType: prop})
+  }
+  // Shows the marker associated with this item
+  onItemClick = (venue) => {
+    this.onMarkerClick(venue)
+  }
+  // Set infowindow to appear when marker is clicked
+  onMarkerClick = (venue) => {
+    if(this.selectedVenue !== null && this.selectedVenue !== venue) {
+      this.selectedVenue.isOpen = false
+      this.selectedVenue.animation = 0
+      console.log(this.selectedVenue)
+    }
+    this.selectedVenue = venue
+    venue.isOpen = !venue.isOpen 
+    venue.animation = 1
+    this.setState({venues: Object.assign(this.state.venues, venue)})
   }
 
   render() {
     return(
-      <div id="app">
+      <div id="app" className="container">
         <div className="venue-list-container">
           <VenueListContainer 
-          venue={this.state.myVenues} 
+          venue={this.state.venues} 
           venueType={this.state.venueType} 
           onVenueTypeUpdate={this.onVenueTypeUpdate} 
           onItemClick={this.onItemClick}
@@ -74,9 +67,8 @@ class App extends Component {
         </div>
         <div className="map">
          <Map 
-         venue={this.state.myVenues} 
+         venues={this.state.venues}
          venueType={this.state.venueType} 
-         markers={this.state.markers} 
          onMarkerClick={this.onMarkerClick} />
         </div>
       </div>
