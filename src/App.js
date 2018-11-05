@@ -76,6 +76,7 @@ class App extends Component {
   render() {
     return(
       <div id="app">
+      {/* Alert on fetch response error */}
         <div className="app-alert">
         <Alert show={this.state.showErrors} dismissible variant="danger" className="app-error-alert alert-hide" aria-label="error alert close" onClose={this.handleErrors}>
           <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
