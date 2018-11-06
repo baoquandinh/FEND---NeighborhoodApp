@@ -14,7 +14,9 @@ const GoogleMapComponent = withScriptjs(withGoogleMap((props) =>
           position={{lat:venue.location.lat, lng: venue.location.lng}} 
           animation={venue.animation}
           onClick={() => props.onClick(venue)}>
-          {venue.isOpen && <InfoWindow><p>{venue.name}</p></InfoWindow>}
+          {venue.isOpen && <InfoWindow>
+            <p>{venue.name}</p>
+            </InfoWindow>}
         </Marker>
       })}
   </GoogleMap>

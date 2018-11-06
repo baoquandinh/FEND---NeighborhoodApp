@@ -16,5 +16,18 @@
 .venue-list-container {
   /* height: 100vh; */
   padding: 0;
-  align-content: center;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.venue-item {
+  list-style-type: none;
+}
+
+select.option {
+  background: blue;
+}
+
+ol {
+  padding-left: 0;
 }

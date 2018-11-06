@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-
 class VenueListDropdown extends Component {
     updateVenue = (events) => {
         this.props.onChange(events.target.value)

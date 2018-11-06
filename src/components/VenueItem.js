@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import '../css/main.css'
 
 class VenueItem extends Component {
     onClick = () => {
@@ -7,7 +8,7 @@ class VenueItem extends Component {
 
     render() {
         return(
-            <li onClick={this.onClick}>{this.props.venue.name}</li>
+            <li className="venue-item" onClick={this.onClick}>{this.props.venue.name}</li>
         )
     }
 } 

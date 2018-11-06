@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/lib/Container'
 import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
 import Alert from 'react-bootstrap/lib/Alert'
-
 import './css/main.css'
 class App extends Component {
   selectedVenue = null
@@ -26,7 +25,7 @@ class App extends Component {
     }
     return response
   }
-  // Retreives the list of recommeneded food venues near default location
+  // Retreives the list of recommeneded food venues near default location using FourSquare API
   getVenues = () => {
     fetch('https://api.foursquare.com/v2/venues/explore?client_id=P51OPZBHXUNV55SMH1K3G0FI5TAQAI3I0A5UAPUK4UETVLLD&client_secret=1MDR0MSHV1L4T01OHEXYEE1CQ2XLN5M2Y4LT42H2EGPQETLT&v=20180323&limit=15&ll=37.7007467,-121.8934768&query=food')
     .then(this.handleErrors)
