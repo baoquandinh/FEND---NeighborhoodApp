@@ -8,7 +8,7 @@ class VenueItem extends Component {
 
     render() {
         return(
-            <li className="venue-item" onClick={this.onClick}>{this.props.venue.name}</li>
+            <li className="venue-item" aria-label="venue list item"onClick={this.onClick}>{this.props.venue.name}</li>
         )
     }
 } 

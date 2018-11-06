@@ -7,7 +7,7 @@ class VenueListDropdown extends Component {
     render(){
         return(
             <div className="venue-list-dropdown">
-	        <select onChange={(events) => {this.updateVenue(events)}}>
+	        <select aria-label="Select venue filter" onChange={(events) => {this.updateVenue(events)}}>
 		        <option value="" disabled>Filter by food type</option>
 	    	    <option value="all">All</option>
 	    	    <option value="american">American</option>

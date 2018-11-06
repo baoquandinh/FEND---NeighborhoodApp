@@ -85,13 +85,13 @@ class App extends Component {
         <Container fluid={true}>
           <Row className="app-row">
             <Col className="map" lg={9}>
-              <Map 
+              <Map aria-label="Map"
               venues={this.state.venues}
               venueType={this.state.venueType} 
               onMarkerClick={this.onMarkerClick} />
             </Col>
             <Col className="venue-list-container" lg={3}>
-                <VenueListContainer 
+                <VenueListContainer aria-label="Venue list container"
                 venue={this.state.venues} 
                 venueType={this.state.venueType} 
                 onVenueTypeUpdate={this.onVenueTypeUpdate} 

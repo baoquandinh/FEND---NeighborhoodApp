@@ -6,7 +6,7 @@ class VenueList extends Component {
         return(
                 <ol>
                     {this.props.venue.filter(venue => ((venue.categories[0].shortName.toLowerCase()).includes((this.props.venueType))) || (this.props.venueType ==='')).map(venue => 
-                    {return <VenueItem key={venue.id} venue={venue} itemType={venue.categories[0].name} onClick={this.props.onItemClick} />})}
+                    {return <VenueItem aria-label="Venue item component" key={venue.id} venue={venue} itemType={venue.categories[0].name} onClick={this.props.onItemClick} />})}
                 </ol>
         )
     }
