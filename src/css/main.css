@@ -1,15 +1,33 @@
-/* Welcome Page */
-#app {
-  display: flex
+.app-error-alert {
+  margin-bottom: 0;
+}
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+.app-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.map{
+  height: 100vh;
+  padding: 0;
+}
+.venue-list-container {
+  /* height: 100vh; */
+  padding: 0;
+  padding-top: 15px;
+  text-align: center;
 }
 
-#map {
-    height: 100vh;
-    width: 100vw;
-  }
+.venue-item {
+  list-style-type: none;
+}
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+select.option {
+  background: blue;
+}
+
+ol {
+  padding-left: 0;
 }
