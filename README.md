@@ -9,8 +9,8 @@ Neighborhood Map project that is featuring a map of local food around a certain 
 5. Select filter dropdown to filter which venue to be seen spefically.
 
 ### Important
-For service worker, it will only work in production mode. Therefore, for step 2, to verify service worker, please run this instead and then follow the rest of the steps.
-2. Run `npm run build`
+For service worker, it will only work in production mode. Therefore, for step 2, to verify service worker, please run this instead and then follow the rest of the steps.  
+2. Run `npm run build`  
 This will build the app for production in the build folder. It will bundle React in production mode and will optimize build for best performance.   
 
 ## Contributing
