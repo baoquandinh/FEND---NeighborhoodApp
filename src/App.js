@@ -29,7 +29,7 @@ class App extends Component {
       let venues = data.response.groups[0].items.map(item => item.venue)
       venues.forEach(venue => {
         venue.isOpen = false
-        venue.animation = 2
+        venue.animation = 0
       });
       this.setState({venues: venues})
     })
@@ -48,24 +48,29 @@ class App extends Component {
     prop === "all" ? this.setState({venueType: ''}) : this.setState({venueType: prop})
   }
   // Shows the marker associated with this item
-  onItemClick = (venue) => {
+  onItemClick = (venue, ariaShow) => {
     this.onMarkerClick(venue)
   }
   // Set infowindow to appear when marker is clicked
   onMarkerClick = (venue) => {
-    if(this.selectedVenue !== null && this.selectedVenue !== venue) {
+    // Closes the previous marker
+    if (this.selectedVenue !== null && this.selectedVenue !== venue) {
       this.selectedVenue.isOpen = false
       this.selectedVenue.animation = 0
-      console.log(this.selectedVenue)
     }
-    this.selectedVenue = venue
-    venue.isOpen = !venue.isOpen 
+    // Stops animiation if clicked on same marker, otherwise set animation
     if(this.selectedVenue === venue && this.selectedVenue.animation === 1) {
       venue.animation = 0
     } else {
       venue.animation = 1
     }
-    this.setState({venues: Object.assign(this.state.venues, venue)})
+      this.selectedVenue = venue
+      venue.isOpen = !venue.isOpen 
+      this.setState({venues: Object.assign(this.state.venues, venue)})
+  }
+
+  onKeyPressed = (venue) => {
+     this.onMarkerClick(venue)
   }
 
   render() {
@@ -92,6 +97,7 @@ class App extends Component {
                 venueType={this.state.venueType} 
                 onVenueTypeUpdate={this.onVenueTypeUpdate} 
                 onItemClick={this.onItemClick}
+                onKeyPressed={this.onKeyPressed}
                 />
             </Col>
           </Row>

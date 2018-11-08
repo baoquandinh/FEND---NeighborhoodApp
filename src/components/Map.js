@@ -1,4 +1,4 @@
-/* global google*/
+// /* global google*/
 import React, {Component} from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 const GoogleMapComponent = withScriptjs(withGoogleMap((props) =>

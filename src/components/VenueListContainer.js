@@ -8,7 +8,7 @@ class VenueListContainer extends Component {
     return(
       <div className="venue-list-container">
           <VenueListDropwdown onChange={this.props.onVenueTypeUpdate} />
-          <VenueList venue={this.props.venue} venueType={this.props.venueType} onItemClick={this.props.onItemClick}/>
+          <VenueList venue={this.props.venue} venueType={this.props.venueType} onItemClick={this.props.onItemClick} onKeyPressed={this.props.onKeyPressed}/>
       </div>
     )
   }
